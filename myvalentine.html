@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Will You Be My Valentine? 💘</title>
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      background: linear-gradient(135deg, #ff5f9e, #ff85b3);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-family: 'Segoe UI', sans-serif;
+      overflow: hidden;
+    }
+
+    .card {
+      background: white;
+      padding: 30px;
+      border-radius: 20px;
+      text-align: center;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+      width: 320px;
+      position: relative;
+      z-index: 2;
+    }
+
+    h1 {
+      color: #ff2e88;
+    }
+
+    .buttons {
+      margin-top: 25px;
+      position: relative;
+      height: 80px;
+    }
+
+    button {
+      padding: 12px 25px;
+      border: none;
+      border-radius: 25px;
+      font-size: 16px;
+      cursor: pointer;
+      position: absolute;
+      transition: all 0.2s ease;
+    }
+
+    #yes {
+      left: 40px;
+      background: #ff2e88;
+      color: white;
+    }
+
+    #no {
+      right: 40px;
+      background: #ccc;
+    }
+
+    .shayari {
+      display: none;
+      margin-top: 20px;
+      font-size: 16px;
+      color: #ff2e88;
+      animation: fadeIn 1s ease;
+    }
+
+    @keyframes fadeIn {
+      from {opacity: 0; transform: scale(0.9);}
+      to {opacity: 1; transform: scale(1);}
+    }
+
+    /* Floating hearts */
+    .heart {
+      position: fixed;
+      bottom: -20px;
+      font-size: 20px;
+      animation: floatUp 6s linear infinite;
+      opacity: 0.8;
+    }
+
+    @keyframes floatUp {
+      0% {
+        transform: translateY(0) scale(1);
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(-100vh) scale(1.5);
+        opacity: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="card">
+    <h1>Will you be my Valentine? 💘</h1>
+    <p>You make my world beautiful 🌹</p>
+
+    <div class="buttons">
+      <button id="yes">YES 💖</button>
+      <button id="no">NO 🙈</button>
+    </div>
+
+    <div class="shayari" id="shayari">
+      💌<br>
+      “Tumhari ek muskurahat par  
+      ye dil haar baitha hai 💕  
+      Valentine ho ya zindagi,  
+      main bas tumhara hi rehna chahta hoon 💖”
+      <br><br>
+      ❤️🌹✨
+    </div>
+  </div>
+
+  <script>
+    const noBtn = document.getElementById("no");
+    const yesBtn = document.getElementById("yes");
+    const shayari = document.getElementById("shayari");
+
+    // NO button juggling / dancing
+    noBtn.addEventListener("mouseover", () => {
+      const x = Math.random() * 200 - 100;
+      const y = Math.random() * 200 - 100;
+      noBtn.style.transform = `translate(${x}px, ${y}px) rotate(${Math.random()*360}deg)`;
+    });
+
+    // YES click effect
+    yesBtn.addEventListener("click", () => {
+      shayari.style.display = "block";
+      createHearts();
+    });
+
+    // Floating hearts function
+    function createHearts() {
+      for (let i = 0; i < 25; i++) {
+        const heart = document.createElement("div");
+        heart.className = "heart";
+        heart.innerHTML = "❤️";
+        heart.style.left = Math.random() * 100 + "vw";
+        heart.style.animationDuration = (Math.random() * 3 + 3) + "s";
+        document.body.appendChild(heart);
+
+        setTimeout(() => {
+          heart.remove();
+        }, 6000);
+      }
+    }
+  </script>
+
+</body>
+</html>
